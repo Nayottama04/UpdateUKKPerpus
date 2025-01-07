@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
 use Illuminate\Http\Request;
 
 class AnggotaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $anggota = Anggota::all();
+        return view('anggota.index', compact('anggota'));
     }
 
     /**

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Format;
 use Illuminate\Http\Request;
 
 class FormatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $format = Format::all();
+        return view('format.index', compact('format'));
     }
 
     /**

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisAnggota;
 use Illuminate\Http\Request;
 
 class JenisAnggotaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $jenisAnggota = JenisAnggota::all();
+        return view('jenis-anggota.index', compact('jenisAnggota'));
     }
 
     /**
