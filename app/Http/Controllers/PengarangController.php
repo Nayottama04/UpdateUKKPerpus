@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengarang;
 use Illuminate\Http\Request;
 
 class PengarangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        $pengarang = Pengarang::all();
+        return view('pengarang.index', compact('pengarang'));
     }
 
     /**

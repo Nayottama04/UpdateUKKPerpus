@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penerbit;
 use Illuminate\Http\Request;
 
 class PenerbitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $penerbit = Penerbit::all();
+        return view('penerbit.index', compact('penerbit'));
     }
+
 
     /**
      * Show the form for creating a new resource.

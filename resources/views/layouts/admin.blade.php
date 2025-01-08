@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Admin Dashboard</title>
     <meta
@@ -12,10 +12,12 @@
       href="{{ asset('img/kaiadmin/favicon.ico') }}"
       type="image/x-icon"
     />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 
     <!-- Fonts and icons -->
-    <script src="{{ asset('js/plugin/webfont/webfont.min.js') }}"></script>
-    <script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <script>
       WebFont.load({
         google: { families: ["Public Sans:300,400,500,600,700"] },
         custom: {
@@ -25,7 +27,10 @@
             "Font Awesome 5 Brands",
             "simple-line-icons",
           ],
-          urls: ["{{ asset('css/fonts.min.css') }}"],
+          urls: [
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+            "{{ asset('css/fonts.min.css') }}"
+          ],
         },
         active: function () {
           sessionStorage.fonts = true;
@@ -35,12 +40,15 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/plugins.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/kaiadmin.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/plugins.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/kaiadmin.min.css') }}" />
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('css/demo.css') }}" />
-  </head>
+    
+    
+</head>
+
   <body>
     <div class="wrapper">
       <!-- Sidebar -->
@@ -48,7 +56,7 @@
         <div class="sidebar-logo">
           <!-- Logo Header -->
           <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
+            <a href="admin.blade.php" class="logo">
               <img
                 src="{{ asset('img/kaiadmin/logo_light.svg') }}"
                 alt="navbar brand"
@@ -90,177 +98,88 @@
                 </span>
                 <h4 class="text-section">Halaman Menu</h4>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#base">
-                  <i class="fas fa-layer-group"></i>
-                  <p>Base</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="base">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="components/avatars.html">
-                        <span class="sub-item">Avatars</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/buttons.html">
-                        <span class="sub-item">Buttons</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/gridsystem.html">
-                        <span class="sub-item">Grid System</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/panels.html">
-                        <span class="sub-item">Panels</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/notifications.html">
-                        <span class="sub-item">Notifications</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/sweetalert.html">
-                        <span class="sub-item">Sweet Alert</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/font-awesome-icons.html">
-                        <span class="sub-item">Font Awesome Icons</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/simple-line-icons.html">
-                        <span class="sub-item">Simple Line Icons</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/typography.html">
-                        <span class="sub-item">Typography</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                  <i class="fas fa-th-list"></i>
-                  <p>Sidebar Layouts</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="sidebarLayouts">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="sidebar-style-2.html">
-                        <span class="sub-item">Sidebar Style 2</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="icon-menu.html">
-                        <span class="sub-item">Icon Menu</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#forms">
-                  <i class="fas fa-pen-square"></i>
-                  <p>Forms</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="forms">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="forms/forms.html">
-                        <span class="sub-item">Basic Form</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#tables">
-                  <i class="fas fa-table"></i>
-                  <p>Tables</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="tables">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="tables/tables.html">
-                        <span class="sub-item">Basic Table</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="tables/datatables.html">
-                        <span class="sub-item">Datatables</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#maps">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <p>Maps</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="maps">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="maps/googlemaps.html">
-                        <span class="sub-item">Google Maps</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="maps/jsvectormap.html">
-                        <span class="sub-item">Jsvectormap</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#charts">
-                  <i class="far fa-chart-bar"></i>
-                  <p>Charts</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="charts">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="charts/charts.html">
-                        <span class="sub-item">Chart Js</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="charts/sparkline.html">
-                        <span class="sub-item">Sparkline</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a href="widgets.html">
-                  <i class="fas fa-desktop"></i>
-                  <p>Widgets</p>
-                  <span class="badge badge-success">4</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../documentation/index.html">
-                  <i class="fas fa-file"></i>
-                  <p>Documentation</p>
-                  <span class="badge badge-secondary">1</span>
-                </a>
-              </li>
-            </ul>
+              <ul class="nav nav-secondary">
+  <!-- Perpustakaan -->
+  <li class="nav-item">
+    <a href="{{ route('perpustakaan.index') }}">
+      <i class="fas fa-book"></i>
+      <p>Perpustakaan</p>
+    </a>
+  </li>
+
+  <!-- Rak -->
+  <li class="nav-item">
+    <a href="{{ route('rak.index') }}">
+    <i class="fas fa-list-alt"></i>
+      <p>Rak</p>
+    </a>
+  </li>
+
+  <!-- DDC -->
+  <li class="nav-item">
+    <a href="{{ route('ddc.index') }}">
+      <i class="fas fa-list-alt"></i>
+      <p>DDC</p>
+    </a>
+  </li>
+
+  <!-- Format Buku -->
+  <li class="nav-item">
+    <a href="{{ route('format.index') }}">
+      <i class="fas fa-file"></i>
+      <p>Format Buku</p>
+    </a>
+  </li>
+
+  <!-- Jenis Anggota -->
+  <li class="nav-item">
+    <a href="{{ route('jenis-anggota.index') }}">
+      <i class="fas fa-users"></i>
+      <p>Jenis Anggota</p>
+    </a>
+  </li>
+
+  <!-- Anggota -->
+  <li class="nav-item">
+    <a href="{{ route('anggota.index') }}">
+      <i class="fas fa-user"></i>
+      <p>Anggota</p>
+    </a>
+  </li>
+
+  <!-- Penerbit -->
+  <li class="nav-item">
+    <a href="{{ route('penerbit.index') }}">
+      <i class="fas fa-building"></i>
+      <p>Penerbit</p>
+    </a>
+  </li>
+
+  <!-- Pengarang -->
+  <li class="nav-item">
+    <a href="{{ route('pengarang.index') }}">
+      <i class="fas fa-pen"></i>
+      <p>Pengarang</p>
+    </a>
+  </li>
+
+  <!-- Pustaka -->
+  <li class="nav-item">
+    <a href="{{ route('pustaka.index') }}">
+      <i class="fas fa-book-reader"></i>
+      <p>Pustaka</p>
+    </a>
+  </li>
+
+  <!-- Transaksi -->
+  <li class="nav-item">
+    <a href="{{ route('transaksi.index') }}">
+      <i class="fas fa-exchange-alt"></i>
+      <p>Transaksi</p>
+    </a>
+  </li>
+</ul>
+
           </div>
         </div>
       </div>
@@ -402,148 +321,266 @@
             >
               <div>
                 <h3 class="fw-bold mb-3">Selamat Datang Admin</h3>
-                <h6 class="op-7 mb-2">Website Perpustakaan Sidoarjo</h6>
+                <h6 class="op-7 mb-2">Website Perpustakaan Nusantara</h6> 
               </div>
               <div class="ms-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
-                <a href="#" class="btn btn-primary btn-round">Add Customer</a>
+                <a href="#" class="btn btn-label-info btn-round me-2">Atur Buku</a>
+                <a href="#" class="btn btn-primary btn-round">Tambahkan Buku</a>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-icon">
-                        <div
-                          class="icon-big text-center icon-primary bubble-shadow-small"
-                        >
-                          <i class="fas fa-users"></i>
-                        </div>
-                      </div>
-                      <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Pengunjung</p>
-                          <h4 class="card-title">360</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-icon">
-                        <div
-                          class="icon-big text-center icon-info bubble-shadow-small"
-                        >
-                          <i class="fas fa-user-check"></i>
-                        </div>
-                      </div>
-                      <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Berlangganan</p>
-                          <h4 class="card-title">175</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-icon">
-                        <div
-                          class="icon-big text-center icon-success bubble-shadow-small"
-                        >
-                          <i class="fas fa-luggage-cart"></i>
-                        </div>
-                      </div>
-                      <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Total Buku</p>
-                          <h4 class="card-title">540 Buku</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  <!-- Card Pengunjung -->
+  <div class="col-sm-6 col-md-3">
+    <div class="card card-stats card-round">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-icon">
+            <div class="icon-big text-center icon-primary bubble-shadow-small">
+              <i class="bi bi-person"></i> <!-- Bootstrap Icons untuk Pengunjung -->
+            </div>
+          </div>
+          <div class="col col-stats ms-3 ms-sm-0">
+            <div class="numbers">
+              <p class="card-category">Pengunjung</p>
+              <h4 class="card-title">360</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Berlangganan -->
+  <div class="col-sm-6 col-md-3">
+    <div class="card card-stats card-round">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-icon">
+            <div class="icon-big text-center icon-info bubble-shadow-small">
+              <i class="bi bi-check-circle"></i> <!-- Bootstrap Icons untuk Berlangganan -->
+            </div>
+          </div>
+          <div class="col col-stats ms-3 ms-sm-0">
+            <div class="numbers">
+              <p class="card-category">Berlangganan</p>
+              <h4 class="card-title">175</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Total Buku -->
+  <div class="col-sm-6 col-md-3">
+    <div class="card card-stats card-round">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-icon">
+            <div class="icon-big text-center icon-success bubble-shadow-small">
+              <i class="bi bi-book"></i> <!-- Bootstrap Icons untuk Total Buku -->
+            </div>
+          </div>
+          <div class="col col-stats ms-3 ms-sm-0">
+            <div class="numbers">
+              <p class="card-category">Total Buku</p>
+              <h4 class="card-title">540 Buku</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            <div class="row">
+            <div class="row">
+  <!-- Card Statistik Pengguna -->
+  <div class="col-md-8">
+    <div class="card card-round">
+      <div class="card-header">
+        <div class="card-head-row">
+          <div class="card-title">Statistik Pengguna</div>
+          <div class="card-tools">
+            <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
+              <span class="btn-label"><i class="fa fa-pencil"></i></span>
+              Export
+            </a>
+            <a href="#" class="btn btn-label-info btn-round btn-sm">
+              <span class="btn-label"><i class="fa fa-print"></i></span>
+              Print
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-container" style="position: relative; height: 100%; width: 100%;">
+          <canvas id="statisticsChart"></canvas>
+        </div>
+        <div id="myChartLegend"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Statistik Transaksi Buku -->
+  <div class="col-md-4">
+    <div class="card card-primary card-round">
+      <div class="card-header">
+        <div class="card-head-row">
+          <div class="card-title">Statistik Transaksi Buku</div>
+          <div class="card-tools">
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary btn-sm dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Opsi
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Export</a>
+                <a class="dropdown-item" href="#">Detail</a>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-8">
+          </div>
+        </div>
+        <div class="card-category">Data Harian (Jan - Des)</div>
+      </div>
+      <div class="card-body pb-0">
+        <div class="mb-4 mt-2">
+          <h1>1,245 Buku</h1>
+        </div>
+        <div class="pull-in">
+          <canvas id="dailySalesChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Statistik Pengguna (Chart Bulanan)
+  const statisticsCtx = document.getElementById('statisticsChart').getContext('2d');
+  const statisticsData = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [
+      {
+        label: 'Pengguna Aktif',
+        data: [120, 150, 170, 200, 240, 260, 300, 320, 350, 380, 400, 450],
+        borderColor: '#4caf50',
+        backgroundColor: 'rgba(76, 175, 80, 0.2)',
+        tension: 0.4,
+        fill: true,
+        pointBackgroundColor: '#4caf50',
+        pointBorderColor: '#fff',
+      },
+    ],
+  };
+
+  const statisticsOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Bulan',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Jumlah Pengguna',
+        },
+        beginAtZero: true,
+      },
+    },
+  };
+
+  new Chart(statisticsCtx, {
+    type: 'line',
+    data: statisticsData,
+    options: statisticsOptions,
+  });
+
+  // Statistik Transaksi Buku (Chart Harian)
+  const dailySalesCtx = document.getElementById('dailySalesChart').getContext('2d');
+  const dailySalesData = {
+  labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+  datasets: [
+    {
+      label: 'Buku Terpinjam',
+      data: [15, 20, 25, 30, 35, 40, 45],
+      borderColor: '#2196f3',
+      backgroundColor: 'rgba(33, 150, 243, 0.2)',
+      tension: 0.4,
+      fill: true,
+      pointBackgroundColor: '#2196f3',
+      pointBorderColor: '#fff',
+      // Ubah warna label di legend
+      borderColor: '#2196f3',
+      pointBorderColor: '#ffffff',
+      pointBackgroundColor: '#ffffff',
+      color: '#ffffff', // Warna teks "Buku Terpinjam" di legend
+    },
+  ],
+};
+
+  const dailySalesOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+  },
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Hari',
+        color: '#ffffff',  // Ubah warna teks menjadi putih
+      },
+      ticks: {
+        color: '#ffffff',  // Ubah warna teks ticks menjadi putih
+      },
+    },
+    y: {
+      title: {
+        display: true,
+        text: 'Jumlah Buku',
+        color: '#ffffff',  // Ubah warna teks menjadi putih
+      },
+      ticks: {
+        color: '#ffffff',  // Ubah warna teks ticks menjadi putih
+      },
+      beginAtZero: true,
+    },
+  },
+};
+
+
+  new Chart(dailySalesCtx, {
+    type: 'line',
+    data: dailySalesData,
+    options: dailySalesOptions,
+  });
+</script>
+<!-- Card User Online -->
                 <div class="card card-round">
-                  <div class="card-header">
-                    <div class="card-head-row">
-                      <div class="card-title">User Statistics</div>
-                      <div class="card-tools">
-                        <a
-                          href="#"
-                          class="btn btn-label-success btn-round btn-sm me-2"
-                        >
-                          <span class="btn-label">
-                            <i class="fa fa-pencil"></i>
-                          </span>
-                          Export
-                        </a>
-                        <a href="#" class="btn btn-label-info btn-round btn-sm">
-                          <span class="btn-label">
-                            <i class="fa fa-print"></i>
-                          </span>
-                          Print
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="chart-container" style="min-height: 375px">
-                      <canvas id="statisticsChart"></canvas>
-                    </div>
-                    <div id="myChartLegend"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card card-primary card-round">
-                  <div class="card-header">
-                    <div class="card-head-row">
-                      <div class="card-title">Daily Sales</div>
-                      <div class="card-tools">
-                        <div class="dropdown">
-    
-                          <div
-                            class="dropdown-menu"
-                            aria-labelledby="dropdownMenuButton"
-                          >
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-category">March 25 - April 02</div>
-                  </div>
                   <div class="card-body pb-0">
-                    <div class="mb-4 mt-2">
-                      <h1>$4,578.58</h1>
-                    </div>
-                    <div class="pull-in">
-                      <canvas id="dailySalesChart"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <div class="card card-round">
-                  <div class="card-body pb-0">
-                    <div class="h1 fw-bold float-end text-primary">+5%</div>
-                    <h2 class="mb-2">17</h2>
-                    <p class="text-muted">Users online</p>
+                    <div class="h1 fw-bold float-end text-primary">+10%</div>
+                    <h2 class="mb-2">60</h2>
+                    <p class="text-muted">Pengguna Online</p>
                     <div class="pull-in sparkline-fix">
                       <div id="lineChart"></div>
                     </div>
@@ -551,136 +588,125 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card card-round">
-                  <div class="card-header">
-                    <div class="card-head-row card-tools-still-right">
-                      <h4 class="card-title">Users Geolocation</h4>
-                      <div class="card-tools">
-                        <button
-                          class="btn btn-icon btn-link btn-primary btn-xs"
-                        >
-                          <span class="fa fa-angle-down"></span>
-                        </button>
-                        <button
-                          class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"
-                        >
-                          <span class="fa fa-sync-alt"></span>
-                        </button>
-                        <button
-                          class="btn btn-icon btn-link btn-primary btn-xs"
-                        >
-                          <span class="fa fa-times"></span>
-                        </button>
-                      </div>
-                    </div>
-                    <p class="card-category">
-                      Map of the distribution of users around the world
-                    </p>
-                  </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="table-responsive table-hover table-sales">
-                          <table class="table">
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <div class="flag">
-                                    <img
-                                      src="{{ asset('img/flags/id.png') }}"
-                                      alt="indonesia"
-                                    />
-                                  </div>
-                                </td>
-                                <td>Indonesia</td>
-                                <td class="text-end">2.320</td>
-                                <td class="text-end">42.18%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="flag">
-                                    <img
-                                      src="{{ asset('img/flags/us.png') }}"
-                                      alt="united states"
-                                    />
-                                  </div>
-                                </td>
-                                <td>USA</td>
-                                <td class="text-end">240</td>
-                                <td class="text-end">4.36%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="flag">
-                                    <img
-                                      src="{{ asset('img/flags/au.png') }}"
-                                      alt="australia"
-                                    />
-                                  </div>
-                                </td>
-                                <td>Australia</td>
-                                <td class="text-end">119</td>
-                                <td class="text-end">2.16%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="flag">
-                                    <img
-                                      src="{{ asset('img/flags/ru.png') }}"
-                                      alt="russia"
-                                    />
-                                  </div>
-                                </td>
-                                <td>Russia</td>
-                                <td class="text-end">1.081</td>
-                                <td class="text-end">19.65%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="flag">
-                                    <img
-                                      src="{{ asset('img/flags/cn.png') }}"
-                                      alt="china"
-                                    />
-                                  </div>
-                                </td>
-                                <td>China</td>
-                                <td class="text-end">1.100</td>
-                                <td class="text-end">20%</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="flag">
-                                    <img
-                                      src="{{ asset('img/flags/br.png') }}"
-                                      alt="brazil"
-                                    />
-                                  </div>
-                                </td>
-                                <td>Brasil</td>
-                                <td class="text-end">640</td>
-                                <td class="text-end">11.63%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="mapcontainer">
-                          <div
-                            id="world-map"
-                            class="w-100"
-                            style="height: 300px"
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<!-- End Card User Online -->
+
+<div class="row"> 
+  <div class="col-md-12">
+    <div class="card card-round">
+      <div class="card-header">
+        <div class="card-head-row card-tools-still-right">
+          <h4 class="card-title">Users Geolocation</h4>
+        </div>
+        <p class="card-category">
+          Map of the distribution of users across Indonesian cities
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="table-responsive table-hover table-sales">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Kota</th>
+                    <th class="text-end">Jumlah</th>
+                  </tr>
+                </thead>
+                <tbody id="locationTable">
+                  <!-- Data lokasi akan diisi secara dinamis -->
+                </tbody>
+              </table>
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mapcontainer">
+              <div id="map" class="w-100" style="height: 300px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Leaflet.js -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+<!-- JavaScript untuk Geolocation -->
+<script>
+  // Data simulasi jumlah pengguna per kota
+  const cityData = {
+    Jakarta: 320,
+    Surabaya: 250,
+    Bandung: 180,
+    Medan: 140,
+    Semarang: 120,
+    Yogyakarta: 90,
+    Malang: 70,
+    Bali: 50,
+  };
+
+  // Menambahkan data kota ke tabel
+  function updateLocationTable(data) {
+    const tableBody = document.getElementById('locationTable');
+    tableBody.innerHTML = ''; // Kosongkan tabel
+    for (const [city, count] of Object.entries(data)) {
+      const row = `
+        <tr>
+          <td>${city}</td>
+          <td class="text-end">${count}</td>
+        </tr>
+      `;
+      tableBody.insertAdjacentHTML('beforeend', row);
+    }
+  }
+
+  // Membuat peta menggunakan Leaflet.js
+  function createMap(data) {
+    const map = L.map('map').setView([-2.5489, 118.0149], 5); // Koordinat Indonesia
+
+    // Menambahkan tile layer ke peta
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+    }).addTo(map);
+
+    // Menambahkan marker untuk setiap kota
+    const cityCoordinates = {
+      Jakarta: [-6.2088, 106.8456],
+      Surabaya: [-7.2504, 112.7688],
+      Bandung: [-6.9175, 107.6191],
+      Medan: [3.5952, 98.6722],
+      Semarang: [-6.9667, 110.4167],
+      Yogyakarta: [-7.7956, 110.3695],
+      Malang: [-7.9666, 112.6326],
+      Bali: [-8.3405, 115.0920],
+    };
+
+    for (const [city, coords] of Object.entries(cityCoordinates)) {
+      const marker = L.marker(coords).addTo(map);
+      marker.bindPopup(`<b>${city}</b><br>Jumlah: ${data[city] || 0}`);
+    }
+  }
+
+  // Inisialisasi fungsi
+  document.addEventListener('DOMContentLoaded', () => {
+    updateLocationTable(cityData);
+    createMap(cityData);
+  });
+</script>
+
+<!-- CSS untuk peta melengkung -->
+<style>
+  #map {
+    border-radius: 15px; /* Menambahkan sudut melengkung pada peta */
+    overflow: hidden;    /* Menghindari konten meluap keluar dari sudut yang melengkung */
+  }
+</style>
+
+
+
+
         <footer class="footer">
           <div class="container-fluid d-flex justify-content-between">
             <nav class="pull-left">

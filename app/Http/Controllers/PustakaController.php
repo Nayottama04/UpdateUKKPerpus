@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pustaka;
 use Illuminate\Http\Request;
 
 class PustakaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $pustaka = Pustaka::all();
+        return view('pustaka.index', compact('pustaka'));
     }
 
     /**
