@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ddc;
 use Illuminate\Http\Request;
 
 class DdcController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $ddc = Ddc::all();
+        return view('ddc.index', compact('ddc'));
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -18,7 +18,7 @@ class RakController extends Controller
      */
     public function create()
     {
-        //
+        return view('rak.create');
     }
 
     /**
@@ -26,15 +26,25 @@ class RakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_rak' => 'required|unique:raks,kode_rak',
+            'rak' => 'required|unique:raks,rak',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        Rak::create($request->all());
+
+        return redirect()->route('rak.index')->with('success', 'Rak berhasil ditambahkan.');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $rak = Rak::findOrFail($id);
+        return view('rak.show', compact('rak'));
     }
 
     /**
@@ -42,7 +52,8 @@ class RakController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $rak = Rak::findOrFail($id);
+        return view('rak.edit', compact('rak'));
     }
 
     /**
@@ -50,7 +61,16 @@ class RakController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'kode_rak' => 'required|unique:raks,kode_rak,' . $id . ',id',
+            'rak' => 'required|unique:raks,rak,' . $id . ',id',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $rak = Rak::findOrFail($id);
+        $rak->update($request->all());
+
+        return redirect()->route('rak.index')->with('success', 'Rak berhasil diperbarui.');
     }
 
     /**
@@ -58,6 +78,9 @@ class RakController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $rak = Rak::findOrFail($id);
+        $rak->delete();
+
+        return redirect()->route('rak.index')->with('success', 'Rak berhasil dihapus.');
     }
 }

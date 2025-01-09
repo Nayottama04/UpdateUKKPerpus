@@ -4,10 +4,27 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\{
-    PerpustakaanController, RakController, DdcController, FormatController,
-    JenisAnggotaController, AnggotaController, PenerbitController,
-    PengarangController, PustakaController, TransaksiController
+    PerpustakaanController,
+    RakController,
+    DdcController,
+    FormatController,
+    JenisAnggotaController,
+    AnggotaController,
+    PenerbitController,
+    PengarangController,
+    PustakaController,
+    TransaksiController
 };
+use App\Http\Controllers\Auth\LoginController;
+
+
+// Halaman awal login
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+
+Route::post('/proseslogin', [LoginController::class, 'login'])->name('login.post');
 
 // Semua resource controller
 Route::resource('perpustakaan', PerpustakaanController::class);
@@ -21,18 +38,15 @@ Route::resource('pengarang', PengarangController::class);
 Route::resource('pustaka', PustakaController::class);
 Route::resource('transaksi', TransaksiController::class);
 
-// Halaman awal login
-Route::get('/', function () {
-    return view('auth.login');
-});
 
 /*------------------------------------------
 All Normal Users Routes List
 --------------------------------------------*/
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
-  
+
 /*------------------------------------------
 All Admin Routes List
 --------------------------------------------*/
@@ -54,6 +68,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-
-Auth::routes();
+require __DIR__ . '/auth.php';

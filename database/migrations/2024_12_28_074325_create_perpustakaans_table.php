@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('perpustakaans', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('nama_perpustakaan', 50)->unique();
-            $table->string('nama_pustakawan', 50);
-            $table->string('alamat', 50);
-            $table->string('email', 50)->unique();
-            $table->string('website', 50);
+            $table->string('nama_perpustakaan')->unique();
+            $table->string('nama_pustakawan');
+            $table->string('alamat');
+            $table->string('email')->unique();
+            $table->string('website')->nullable();
             $table->string('no_telp', 15);
-            $table->string('keterangan', 50);
+            $table->string('keterangan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

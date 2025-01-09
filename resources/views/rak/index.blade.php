@@ -27,8 +27,8 @@
           <td>{{ $r->rak }}</td>
           <td>{{ $r->keterangan }}</td>
           <td>
-            <a href="{{ route('rak.edit', $r->id_rak) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('rak.destroy', $r->id_rak) }}" method="POST" style="display:inline;">
+            <a href="{{ route('rak.edit', $r->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{{ route('rak.destroy', $r->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
