@@ -9,55 +9,59 @@ class FormatController extends Controller
 {
     public function index()
     {
-        $format = Format::all();
+        $format = Format::all(); // Mengambil semua data format
         return view('format.index', compact('format'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('format.create'); // Menampilkan form tambah format
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_format' => 'required|unique:formats,kode_format|max:10',
+            'format' => 'required|unique:formats,format|max:50',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        Format::create($request->all());
+
+        return redirect()->route('format.index')->with('success', 'Format Buku berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $format = Format::findOrFail($id); // Mengambil data format berdasarkan ID
+        return view('format.show', compact('format'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
-    }
+        $format = Format::findOrFail($id);
+        return view('format.edit',   compact('format'));
+    }    
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'kode_format' => 'required|unique:formats,kode_format,' . $id . ',id|max:10',
+            'format' => 'required|unique:formats,format,' . $id . ',id|max:50',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $format = Format::findOrFail($id);
+        $format->update($request->all());
+
+        return redirect()->route('format.index')->with('success', 'Format Buku berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $format = Format::findOrFail($id);
+        $format->delete();
+
+        return redirect()->route('format.index')->with('success', 'Format Buku berhasil dihapus.');
     }
 }

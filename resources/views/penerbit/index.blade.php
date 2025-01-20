@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Penerbit')
+@section('title', 'Daftar Penerbit')
 
 @section('content')
 <div class="card">
@@ -15,22 +15,23 @@
           <th>#</th>
           <th>Kode Penerbit</th>
           <th>Nama Penerbit</th>
-          <th>Email</th>
           <th>No. Telepon</th>
+          <th>Email</th>
           <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($penerbit as $p)
+        @foreach($penerbits as $penerbit)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $p->kode_penerbit }}</td>
-          <td>{{ $p->nama_penerbit }}</td>
-          <td>{{ $p->email }}</td>
-          <td>{{ $p->no_telp }}</td>
+          <td>{{ $penerbit->kode_penerbit }}</td>
+          <td>{{ $penerbit->nama_penerbit }}</td>
+          <td>{{ $penerbit->no_telp }}</td>
+          <td>{{ $penerbit->email }}</td>
           <td>
-            <a href="{{ route('penerbit.edit', $p->id_penerbit) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('penerbit.destroy', $p->id_penerbit) }}" method="POST" style="display:inline;">
+            <a href="{{ route('penerbit.show', $penerbit->id) }}" class="btn btn-info btn-sm">Detail</a>
+            <a href="{{ route('penerbit.edit', $penerbit->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{{ route('penerbit.destroy', $penerbit->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

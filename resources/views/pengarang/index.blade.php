@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengarang')
+@section('title', 'Daftar Pengarang')
 
 @section('content')
 <div class="card">
@@ -15,8 +15,8 @@
           <th>#</th>
           <th>Kode Pengarang</th>
           <th>Nama Pengarang</th>
-          <th>Email</th>
           <th>No. Telepon</th>
+          <th>Email</th>
           <th>Aksi</th>
         </tr>
       </thead>
@@ -26,11 +26,12 @@
           <td>{{ $loop->iteration }}</td>
           <td>{{ $p->kode_pengarang }}</td>
           <td>{{ $p->nama_pengarang }}</td>
-          <td>{{ $p->email }}</td>
           <td>{{ $p->no_telp }}</td>
+          <td>{{ $p->email }}</td>
           <td>
-            <a href="{{ route('pengarang.edit', $p->id_pengarang) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('pengarang.destroy', $p->id_pengarang) }}" method="POST" style="display:inline;">
+            <a href="{{ route('pengarang.show', $p->id) }}" class="btn btn-info btn-sm">Detail</a>
+            <a href="{{ route('pengarang.edit', $p->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{{ route('pengarang.destroy', $p->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

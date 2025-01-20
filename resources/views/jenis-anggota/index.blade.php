@@ -25,12 +25,12 @@
         <tr>
           <td>{{ $loop->iteration }}</td>
           <td>{{ $j->kode_jenis_anggota }}</td>
-          <td>{{ $j->jenis_anggota }}</td>
+          <td>{{ $j->jns_anggota }}</td>
           <td>{{ $j->max_pinjam }}</td>
           <td>{{ $j->keterangan }}</td>
           <td>
-            <a href="{{ route('jenis-anggota.edit', $j->id_jenis_anggota) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('jenis-anggota.destroy', $j->id_jenis_anggota) }}" method="POST" style="display:inline;">
+            <a href="{{ route('jenis-anggota.edit', $j->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{{ route('jenis-anggota.destroy', $j->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

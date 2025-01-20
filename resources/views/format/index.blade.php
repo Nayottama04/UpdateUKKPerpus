@@ -27,8 +27,8 @@
           <td>{{ $f->format }}</td>
           <td>{{ $f->keterangan }}</td>
           <td>
-            <a href="{{ route('format.edit', $f->id_format) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('format.destroy', $f->id_format) }}" method="POST" style="display:inline;">
+          <a href="{{ route('format.edit', $f->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{{ route('format.destroy', $f->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

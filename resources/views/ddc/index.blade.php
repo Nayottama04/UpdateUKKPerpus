@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'DDC')
+@section('title', 'Daftar DDC')
 
 @section('content')
 <div class="card">
@@ -15,20 +15,23 @@
           <th>#</th>
           <th>Kode DDC</th>
           <th>DDC</th>
+          <th>Rak</th>
           <th>Keterangan</th>
           <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($ddc as $d)
+        @foreach($ddcs as $ddc)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $d->kode_ddc }}</td>
-          <td>{{ $d->ddc }}</td>
-          <td>{{ $d->keterangan }}</td>
+          <td>{{ $ddc->kode_ddc }}</td>
+          <td>{{ $ddc->ddc }}</td>
+          <td>{{ $ddc->rak->rak }}</td>
+          <td>{{ $ddc->keterangan }}</td>
           <td>
-            <a href="{{ route('ddc.edit', $d->id_ddc) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('ddc.destroy', $d->id_ddc) }}" method="POST" style="display:inline;">
+            <a href="{{ route('ddc.show', $ddc->id) }}" class="btn btn-info btn-sm">Detail</a>
+            <a href="{{ route('ddc.edit', $ddc->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{{ route('ddc.destroy', $ddc->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

@@ -9,55 +9,61 @@ class JenisAnggotaController extends Controller
 {
     public function index()
     {
-        $jenisAnggota = JenisAnggota::all();
+        $jenisAnggota = JenisAnggota::all(); // Mengambil semua data jenis anggota
         return view('jenis-anggota.index', compact('jenisAnggota'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('jenis-anggota.create'); // Menampilkan form tambah jenis anggota
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_jenis_anggota' => 'required|unique:jenis_anggotas,kode_jenis_anggota|max:2',
+            'jns_anggota' => 'required|unique:jenis_anggotas,jns_anggota|max:15',
+            'max_pinjam' => 'required|integer|min:1|max:99999',
+            'keterangan' => 'nullable|string|max:50',
+        ]);
+
+        JenisAnggota::create($request->all());
+
+        return redirect()->route('jenis-anggota.index')->with('success', 'Jenis Anggota berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $jenisAnggota = JenisAnggota::findOrFail($id); // Mengambil data berdasarkan ID
+        return view('jenis-anggota.show', compact('jenisAnggota'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $jenisAnggota = JenisAnggota::findOrFail($id); // Mengambil data berdasarkan ID
+        return view('jenis-anggota.edit', compact('jenisAnggota'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'kode_jenis_anggota' => 'required|unique:jenis_anggotas,kode_jenis_anggota,' . $id . ',id|max:2',
+            'jns_anggota' => 'required|unique:jenis_anggotas,jns_anggota,' . $id . ',id|max:15',
+            'max_pinjam' => 'required|integer|min:1|max:99999',
+            'keterangan' => 'nullable|string|max:50',
+        ]);
+
+        $jenisAnggota = JenisAnggota::findOrFail($id);
+        $jenisAnggota->update($request->all());
+
+        return redirect()->route('jenis-anggota.index')->with('success', 'Jenis Anggota berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $jenisAnggota = JenisAnggota::findOrFail($id);
+        $jenisAnggota->delete();
+
+        return redirect()->route('jenis-anggota.index')->with('success', 'Jenis Anggota berhasil dihapus.');
     }
 }
