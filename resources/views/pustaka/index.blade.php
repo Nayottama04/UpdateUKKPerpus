@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pustaka')
+@section('title', 'Daftar Pustaka')
 
 @section('content')
 <div class="card">
@@ -13,24 +13,33 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>ISBN</th>
-          <th>Judul</th>
-          <th>Tahun Terbit</th>
-          <th>Harga</th>
+          <th>Kode Pustaka</th>
+          <th>Judul Pustaka</th>
+          <th>DDC</th>
+          <th>Format</th>
+          <th>Penerbit</th>
+          <th>Pengarang</th>
+          <th>Harga Buku</th>
+          <th>Kondisi Buku</th>
           <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($pustaka as $p)
+        @foreach($pustakas as $pustaka)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $p->isbn }}</td>
-          <td>{{ $p->judul_pustaka }}</td>
-          <td>{{ $p->tahun_terbit }}</td>
-          <td>{{ $p->harga_buku }}</td>
+          <td>{{ $pustaka->kode_pustaka }}</td>
+          <td>{{ $pustaka->judul_pustaka }}</td>
+          <td>{{ $pustaka->ddc->ddc }}</td>
+          <td>{{ $pustaka->format->format }}</td>
+          <td>{{ $pustaka->penerbit->nama_penerbit }}</td>
+          <td>{{ $pustaka->pengarang->nama_pengarang }}</td>
+          <td>{{ $pustaka->harga_buku }}</td>
+          <td>{{ $pustaka->kondisi_buku }}</td>
           <td>
-            <a href="{{ route('pustaka.edit', $p->id_pustaka) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('pustaka.destroy', $p->id_pustaka) }}" method="POST" style="display:inline;">
+            <a href="{{ route('pustaka.show', $pustaka->id) }}" class="btn btn-info btn-sm">Detail</a>
+            <a href="{{ route('pustaka.edit', $pustaka->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form action="{{ route('pustaka.destroy', $pustaka->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
