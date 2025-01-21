@@ -68,4 +68,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/api/total-buku', function () {
+    return response()->json(['total_buku' => \App\Models\Pustaka::count()]);
+})->name('api.total-buku');
+
+Route::get('/api/total-anggota', function () {
+    return response()->json(['total_anggota' => \App\Models\Anggota::count()]);
+})->name('api.total-anggota');
+
+
 require __DIR__ . '/auth.php';

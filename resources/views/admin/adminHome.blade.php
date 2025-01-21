@@ -37,46 +37,88 @@
 
         <!-- Card Berlangganan -->
         <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-info bubble-shadow-small">
-                                <i class="bi bi-check-circle"></i> <!-- Bootstrap Icons untuk Berlangganan -->
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Berlangganan</p>
-                                <h4 class="card-title">175</h4>
-                            </div>
-                        </div>
+    <div class="card card-stats card-round">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-icon">
+                    <div class="icon-big text-center icon-info bubble-shadow-small">
+                        <i class="bi bi-check-circle"></i> <!-- Bootstrap Icons untuk Berlangganan -->
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Card Total Buku -->
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-success bubble-shadow-small">
-                                <i class="bi bi-book"></i> <!-- Bootstrap Icons untuk Total Buku -->
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Total Buku</p>
-                                <h4 class="card-title">540 Buku</h4>
-                            </div>
-                        </div>
+                <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                        <p class="card-category">Anggota</p>
+                        <h4 class="card-title" id="total-anggota">Loading...</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    // Fungsi untuk mendapatkan total anggota secara live
+    function fetchTotalAnggota() {
+        fetch("{{ route('api.total-anggota') }}")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('total-anggota').textContent = data.total_anggota;
+            })
+            .catch(error => console.error('Error fetching total anggota:', error));
+    }
+
+    // Panggil fungsi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchTotalAnggota();
+        
+        // Perbarui setiap 5 detik (5000 ms)
+        setInterval(fetchTotalAnggota, 5000);
+    });
+</script>
+
+
+
+        <!-- Card Total Buku -->
+        <div class="col-sm-6 col-md-3">
+    <div class="card card-stats card-round">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-icon">
+                    <div class="icon-big text-center icon-success bubble-shadow-small">
+                        <i class="bi bi-book"></i> <!-- Bootstrap Icons untuk Total Buku -->
+                    </div>
+                </div>
+                <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                        <p class="card-category">Total Buku</p>
+                        <h4 class="card-title" id="total-buku">Loading...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fungsi untuk mendapatkan total buku secara live
+    function fetchTotalBuku() {
+        fetch("{{ route('api.total-buku') }}")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('total-buku').textContent = data.total_buku + ' Buku';
+            })
+            .catch(error => console.error('Error fetching total buku:', error));
+    }
+
+    // Panggil fungsi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchTotalBuku();
+        
+        // Perbarui setiap 5 detik (5000 ms)
+        setInterval(fetchTotalBuku, 5000);
+    });
+</script>
+
 
     <div class="row">
         <div class="row">

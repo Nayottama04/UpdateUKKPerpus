@@ -1,5 +1,5 @@
 @extends('layouts.app')
-  
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,8 +16,52 @@
                         </div>
                     @endif
 
-                    <div style="text-align: center; margin-top: 30px;">
-                        <h2 style="font-size: 2rem; color: #333; font-weight: 600;">Kamu Sudah Masuk OOOMAGAAA.</h2>
+                    <!-- Statistik -->
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="card shadow-sm" style="border-radius: 8px; margin-bottom: 20px;">
+                                <div class="card-body">
+                                    <h5>Total Pustaka</h5>
+                                    <h3>{{ $totalPustaka }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm" style="border-radius: 8px; margin-bottom: 20px;">
+                                <div class="card-body">
+                                    <h5>Riwayat Transaksi</h5>
+                                    <h3>{{ $totalTransaksi }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm" style="border-radius: 8px; margin-bottom: 20px;">
+                                <div class="card-body">
+                                    <h5>Buku Tersedia</h5>
+                                    <h3>{{ $bukuTersedia }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Daftar Buku Baru -->
+                    <div class="mt-4">
+                        <h4 class="mb-3" style="color: #333;">Buku Terbaru</h4>
+                        <div class="row">
+                            @foreach ($pustakaBaru as $pustaka)
+                            <div class="col-md-6 mb-4">
+                                <div class="card shadow-sm h-100" style="border-radius: 8px;">
+                                    <img src="{{ asset('storage/' . $pustaka->gambar) }}" alt="{{ $pustaka->judul_pustaka }}" class="card-img-top" style="border-radius: 8px 8px 0 0;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $pustaka->judul_pustaka }}</h5>
+                                        <p class="card-text text-muted">Pengarang: {{ $pustaka->pengarang->nama_pengarang }}</p>
+                                    
+
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
