@@ -79,7 +79,7 @@
         <!-- End Logo Header -->
       </div>
 
-      
+
       <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
@@ -91,7 +91,7 @@
                 <i class="fas fa-home"></i>
                 <p>Dashboard Admin
                 </p>
-          
+
               </a>
             <li class="nav-section">
               <span class="sidebar-mini-icon">
@@ -300,7 +300,7 @@
       </div>
       <div class="container">
 
-     @yield('content')
+        @yield('content')
 
         <!-- Leaflet.js -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />

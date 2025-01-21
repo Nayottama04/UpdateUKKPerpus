@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <h2>Kamu Sudah Masuk.</h2>
+                    <h2>Kamu Sudah Masuk OOOMAGAAA.</h2>
                 </div>
             </div>
         </div>
