@@ -22,14 +22,14 @@ class PengarangController extends Controller
     {
         $request->validate([
             'kode_pengarang' => 'required|unique:pengarangs,kode_pengarang|max:10',
-            'gelar_depan' => 'nullable|max:20',
+            'gelar_depan' => 'required|max:20',
             'nama_pengarang' => 'required|unique:pengarangs,nama_pengarang|max:100',
-            'gelar_belakang' => 'nullable|max:20',
+            'gelar_belakang' => 'required|max:20',
             'no_telp' => 'required|max:15',
             'email' => 'required|email|max:100',
-            'website' => 'nullable|max:100',
-            'biografi' => 'nullable',
-            'keterangan' => 'nullable|max:100',
+            'website' => 'required|max:100',
+            'biografi' => 'required',
+            'keterangan' => 'required|max:100',
         ]);
 
         Pengarang::create($request->all());

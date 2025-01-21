@@ -10,7 +10,7 @@
         </div>
         <div class="ms-md-auto py-2 py-md-0">
             <a href="{{ route('rak.index') }}" class="btn btn-label-info btn-round me-2">Atur Rak</a>
-            <a href="#" class="btn btn-primary btn-round">Tambahkan Buku</a>
+            <a href="{{ route('anggota.create') }}" class="btn btn-primary btn-round">Tambah Anggota</a>
         </div>
     </div>
     <div class="row">

@@ -89,8 +89,9 @@
                 class="collapsed"
                 aria-expanded="false">
                 <i class="fas fa-home"></i>
-                <p>Halaman Utama</p>
-                <span class="caret"></span>
+                <p>Dashboard Admin
+                </p>
+          
               </a>
             <li class="nav-section">
               <span class="sidebar-mini-icon">
@@ -225,7 +226,7 @@
                 </div>
                 <input
                   type="text"
-                  placeholder="Search ..."
+                  placeholder="Cari..."
                   class="form-control" />
               </div>
             </nav>
@@ -234,12 +235,6 @@
               <li
                 class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
               </li>
-
-
-
-
-
-
               <li class="nav-item topbar-icon dropdown hidden-caret">
               </li>
 
@@ -271,10 +266,10 @@
                         </div>
                         <div class="u-text">
                           <h4>Aing Admin</h4>
-                          <p class="text-muted">admin@itsolution.com</p>
+                          <p class="text-muted">GuehAdmin@gmail.com</p>
                           <a
                             href="profile.html"
-                            class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                            class="btn btn-xs btn-secondary btn-sm">Lihat Profil</a>
                         </div>
                       </div>
                     </li>
@@ -303,8 +298,8 @@
         </nav>
         <!-- End Navbar -->
       </div>
-
       <div class="container">
+
      @yield('content')
 
         <!-- Leaflet.js -->
