@@ -33,7 +33,7 @@ class HomeController extends Controller
         $bukuTersedia = Pustaka::where('rp', '1')->count();
         $pustakaBaru = Pustaka::orderBy('created_at', 'desc')->take(8)->get();
 
-        return view('home', compact('totalPustaka', 'totalTransaksi', 'bukuTersedia', 'pustakaBaru'));
+        return view('user.userHome', compact('totalPustaka', 'totalTransaksi', 'bukuTersedia', 'pustakaBaru'));
     }
 
     /**

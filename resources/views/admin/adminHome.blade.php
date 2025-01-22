@@ -26,14 +26,34 @@
                         </div>
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
-                                <p class="card-category">Pengunjung</p>
-                                <h4 class="card-title">360</h4>
+                            <p class="card-category">Cabang Perpustakaan</p>
+                            <h4 class="card-title" id="total-cabang">Loading...</h4> <!-- Angka cabang yang akan diperbarui -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+    // Fungsi untuk mendapatkan total cabang perpustakaan secara live
+    function fetchTotalCabang() {
+        fetch("{{ route('api.total-cabang') }}")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('total-cabang').textContent = data.total_cabang;
+            })
+            .catch(error => console.error('Error fetching total cabang:', error));
+    }
+
+    // Panggil fungsi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchTotalCabang();
+        
+        // Perbarui setiap 5 detik (5000 ms)
+        setInterval(fetchTotalCabang, 5000);
+    });
+</script>
 
         <!-- Card Berlangganan -->
         <div class="col-sm-6 col-md-3">

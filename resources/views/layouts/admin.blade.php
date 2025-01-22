@@ -267,18 +267,10 @@
                         <div class="u-text">
                           <h4>Aing Admin</h4>
                           <p class="text-muted">GuehAdmin@gmail.com</p>
-                          <a
-                            href="profile.html"
-                            class="btn btn-xs btn-secondary btn-sm">Lihat Profil</a>
                         </div>
                       </div>
                     </li>
                     <li>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">My Profile</a>
-                      <a class="dropdown-item" href="#">Inbox</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Account Setting</a>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
                         @csrf

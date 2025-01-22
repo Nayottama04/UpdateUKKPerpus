@@ -29,7 +29,7 @@
       </div>
       <div class="form-group">
         <label for="keterangan">Keterangan</label>
-        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan keterangan (opsional)"></textarea>
+        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan keterangan"></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Simpan</button>
       <a href="{{ route('ddc.index') }}" class="btn btn-secondary">Kembali</a>

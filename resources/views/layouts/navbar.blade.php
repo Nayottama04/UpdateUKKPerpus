@@ -119,9 +119,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Beranda</a>
-                        </li>
+    
                         @auth
                             @if (Auth::user()->is_admin)
                                 <li class="nav-item dropdown">
@@ -182,7 +180,7 @@
 
         <!-- Footer -->
         <footer>
-            <p>&copy; {{ date('Y') }} Perpustakaan Nusantara. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Perpustakaan. All rights reserved.</p>
         </footer>
     </div>
 </body>

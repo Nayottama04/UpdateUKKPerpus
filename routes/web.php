@@ -44,7 +44,7 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('user.home');
 });
 
 /*------------------------------------------
@@ -75,6 +75,13 @@ Route::get('/api/total-buku', function () {
 Route::get('/api/total-anggota', function () {
     return response()->json(['total_anggota' => \App\Models\Anggota::count()]);
 })->name('api.total-anggota');
+
+use App\Models\CabangPerpustakaan;
+
+Route::get('/api/total-cabang', function () {
+    return response()->json(['total_cabang' =>  \App\Models\Perpustakaan::count()]);
+})->name('api.total-cabang');
+
 
 
 require __DIR__ . '/auth.php';
