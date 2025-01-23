@@ -5,12 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <!-- Ucapan Selamat Datang -->
-            <div class="card mb-4 shadow-lg" style="border-radius: 18px; background-color: #fff; padding: 30px;">
-                <div class="card-header text-center" style="background-color: #000; color: #fff; border-radius: 18px 18px 0 0;">
+            <div class="welcome-image">
+                <div class="welcome-overlay"></div>
+                <div class="welcome-text">
                     <h2>Selamat Datang, {{ Auth::user()->name }}!</h2>
-                </div>
-                <div class="card-body text-center" style="font-family: 'San Francisco', sans-serif; padding: 20px;">
-                    <p class="text-muted" style="font-size: 1.1rem;">
+                    <p>
                         Terima kasih telah bergabung di Perpustakaan Nusantara. Nikmati berbagai koleksi pustaka kami, cek riwayat transaksi Anda, dan temukan buku yang tersedia untuk dipinjam.
                     </p>
                 </div>
@@ -18,6 +17,66 @@
         </div>
     </div>
 
+<style>
+    /* Gambar Latar Belakang */
+    .welcome-image {
+        position: relative;
+        background-image: url('https://wallpapercave.com/wp/wp10055128.jpg'); /* Ganti dengan gambar latar belakang */
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 18px;
+    }
+
+    /* Overlay Gelap untuk Membantu Membaca Teks */
+    .welcome-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4); /* Gelap dengan transparansi */
+        border-radius: 18px;
+    }
+
+    .welcome-text {
+        text-align: center;
+        color: #fff;
+        font-family: 'San Francisco', sans-serif;
+        font-size: 1.2rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        padding: 0 20px;
+        z-index: 1;
+    }
+
+    .welcome-text h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .welcome-text p {
+        font-size: 1rem;
+    }
+
+    /* Efek untuk responsif di mobile */
+    @media (max-width: 767px) {
+        .welcome-image {
+            height: 300px;
+        }
+
+        .welcome-text h2 {
+            font-size: 1.5rem;
+        }
+
+        .welcome-text p {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+<br>
     <!-- Statistik -->
     <div class="row text-center mb-4">
         <div class="col-md-4">
@@ -46,27 +105,30 @@
         </div>
     </div>
 
-    <!-- Buku Terbaru -->
-    <div class="row">
-        <div class="col-md-12">
-            <h4 class="mb-3" style="font-size: 1.75rem; color: #333; font-weight: bold;">Buku Terbaru</h4>
-            <div class="row">
-                @foreach ($pustakaBaru as $pustaka)
-                    <div class="col-md-4 mb-4">
-                        <div class="card shadow-lg hover-effect" style="border-radius: 18px; overflow: hidden; background-color: #fff;">
-                            <img src="{{ asset('img/dongeng.jpg' . $pustaka->gambar) }}" alt="{{ $pustaka->judul_pustaka }}" class="card-img-top" style="height: 220px; object-fit: cover; border-radius: 18px 18px 0 0;">
-                            <div class="card-body" style="padding: 20px;">
-                                <h5 class="card-title" style="color: #333; font-size: 1.3rem;">{{ $pustaka->judul_pustaka }}</h5>
-                                <p class="card-text text-muted" style="font-size: 1rem; margin-bottom: 10px;">Pengarang: {{ $pustaka->pengarang->nama_pengarang }}</p>
-                                <a href="#" class="btn btn-outline-dark btn-sm" style="border-radius: 20px; border: 2px solid #333; color: #333;">Detail</a>
-                            </div>
+<!-- Buku Terbaru -->
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="mb-3" style="font-size: 1.75rem; color: #333; font-weight: bold;">Buku Terbaru</h4>
+        <div class="row">
+            @foreach ($pustakaBaru as $pustaka)
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-lg hover-effect" style="border-radius: 18px; overflow: hidden; background-color: #fff;">
+                        <img src="{{ asset('storage/' . $pustaka->gambar) }}" alt="{{ $pustaka->judul_pustaka }}" 
+                             class="card-img-top" style="height: 220px; object-fit: cover; border-radius: 18px 18px 0 0;">
+                        <div class="card-body" style="padding: 20px;">
+                            <h5 class="card-title" style="color: #333; font-size: 1.3rem;">{{ $pustaka->judul_pustaka }}</h5>
+                            <p class="card-text text-muted" style="font-size: 1rem; margin-bottom: 10px;">Pengarang: {{ $pustaka->pengarang->nama_pengarang }}</p>
+                            <a href="{{ route('pustaka.show', $pustaka->id) }}" 
+                               class="btn btn-outline-dark btn-sm" 
+                               style="border-radius: 20px; border: 2px solid #333; color: #333;">Detail</a>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
+
 
 <style>
     body {

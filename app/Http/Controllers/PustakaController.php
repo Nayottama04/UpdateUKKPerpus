@@ -41,7 +41,7 @@ class PustakaController extends Controller
             'keterangan_fisik' => 'nullable|max:100',
             'keterangan_tambahan' => 'nullable|max:100',
             'abstraksi' => 'nullable',
-            'gambar' => 'nullable|file',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'harga_buku' => 'required|integer',
             'kondisi_buku' => 'required|max:15',
             'rp' => 'required|in:0,1',
@@ -50,16 +50,25 @@ class PustakaController extends Controller
             'denda_hilang' => 'required|integer',
         ]);
 
-        $pustakaData = $request->all();
+        // Ambil semua input kecuali file gambar
+        $pustakaData = $request->except('gambar');
 
+        // Proses upload file gambar
         if ($request->hasFile('gambar')) {
-            $pustakaData['gambar'] = $request->file('gambar')->store('pustaka', 'public');
+            // Simpan gambar di folder storage/app/public/gambar
+            $gambarPath = $request->file('gambar')->store('gambar', 'public');
+
+            // Tambahkan path gambar ke dalam data pustaka
+            $pustakaData['gambar'] = $gambarPath;
         }
 
+        // Simpan data ke database
         Pustaka::create($pustakaData);
 
+        // Redirect dengan pesan sukses
         return redirect()->route('pustaka.index')->with('success', 'Pustaka berhasil ditambahkan.');
     }
+
 
     public function show(string $id)
     {
@@ -92,9 +101,7 @@ class PustakaController extends Controller
             'keterangan_fisik' => 'nullable|max:100',
             'keterangan_tambahan' => 'nullable|max:100',
             'abstraksi' => 'nullable',
-            'gambar' => 'nullable|file',
-
-
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'harga_buku' => 'required|integer',
             'kondisi_buku' => 'required|max:15',
             'rp' => 'required|in:0,1',
@@ -123,5 +130,3 @@ class PustakaController extends Controller
         return redirect()->route('pustaka.index')->with('success', 'Pustaka berhasil dihapus.');
     }
 }
-
-

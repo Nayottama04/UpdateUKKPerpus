@@ -32,6 +32,8 @@ class HomeController extends Controller
         $totalTransaksi = Transaksi::where('anggota_id', Auth::id())->count();
         $bukuTersedia = Pustaka::where('rp', '1')->count();
         $pustakaBaru = Pustaka::orderBy('created_at', 'desc')->take(8)->get();
+        $pustakaBaru = Pustaka::latest()->take(6)->get();
+
 
         return view('user.userHome', compact('totalPustaka', 'totalTransaksi', 'bukuTersedia', 'pustakaBaru'));
     }

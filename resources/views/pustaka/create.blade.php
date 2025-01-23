@@ -92,9 +92,9 @@
       </div>
 
       <div class="form-group">
-        <label for="gambar">Gambar</label>
-        <input type="file" name="gambar" id="gambar" class="form-control">
-      </div>
+        <label for="gambar">Gambar Buku</label>
+        <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*" required>
+    </div>
 
       <div class="form-group">
         <label for="harga_buku">Harga Buku</label>
