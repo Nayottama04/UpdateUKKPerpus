@@ -118,9 +118,10 @@
                         <div class="card-body" style="padding: 20px;">
                             <h5 class="card-title" style="color: #333; font-size: 1.3rem;">{{ $pustaka->judul_pustaka }}</h5>
                             <p class="card-text text-muted" style="font-size: 1rem; margin-bottom: 10px;">Pengarang: {{ $pustaka->pengarang->nama_pengarang }}</p>
-                            <a href="{{ route('pustaka.show', $pustaka->id) }}" 
-                               class="btn btn-outline-dark btn-sm" 
-                               style="border-radius: 20px; border: 2px solid #333; color: #333;">Detail</a>
+                            <a href="{{ route('user.pustaka.show', $pustaka->id) }}" 
+   class="btn btn-outline-dark btn-sm" 
+   style="border-radius: 20px; border: 2px solid #333; color: #333;">Detail</a>
+
                         </div>
                     </div>
                 </div>

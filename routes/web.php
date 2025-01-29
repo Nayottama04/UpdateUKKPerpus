@@ -13,7 +13,8 @@ use App\Http\Controllers\{
     PenerbitController,
     PengarangController,
     PustakaController,
-    TransaksiController
+    TransaksiController,
+    UserPustakaController
 };
 use App\Http\Controllers\Auth\LoginController;
 
@@ -46,6 +47,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('user.home');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/pustaka/{id}', [UserPustakaController::class, 'show'])->name('user.pustaka.show');
+});
+
 
 /*------------------------------------------
 All Admin Routes List
