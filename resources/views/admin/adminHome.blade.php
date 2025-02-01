@@ -142,187 +142,79 @@
 
     <div class="row">
         <div class="row">
-            <!-- Card Statistik Pengguna -->
-            <div class="col-md-8">
-                <div class="card card-round">
-                    <div class="card-header">
-                        <div class="card-head-row">
-                            <div class="card-title">Statistik Pengguna</div>
-                            <div class="card-tools">
-                                <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
-                                    <span class="btn-label"><i class="fa fa-pencil"></i></span>
-                                    Export
-                                </a>
-                                <a href="#" class="btn btn-label-info btn-round btn-sm">
-                                    <span class="btn-label"><i class="fa fa-print"></i></span>
-                                    Print
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container" style="position: relative; height: 100%; width: 100%;">
-                            <canvas id="statisticsChart"></canvas>
-                        </div>
-                        <div id="myChartLegend"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card Statistik Transaksi Buku -->
-            <div class="col-md-4">
-                <div class="card card-primary card-round">
-                    <div class="card-header">
-                        <div class="card-head-row">
-                            <div class="card-title">Statistik Transaksi Buku</div>
-                            <div class="card-tools">
-                                <div class="dropdown">
-                                    <button
-                                        class="btn btn-secondary btn-sm dropdown-toggle"
-                                        type="button"
-                                        id="dropdownMenuButton"
-                                        data-bs-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Opsi
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Export</a>
-                                        <a class="dropdown-item" href="#">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-category">Data Harian (Jan - Des)</div>
-                    </div>
-                    <div class="card-body pb-0">
-                        <div class="mb-4 mt-2">
-                            <h1>1,245 Buku</h1>
-                        </div>
-                        <div class="pull-in">
-                            <canvas id="dailySalesChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+       <!-- Statistik Pengguna Online -->
+<div class="col-md-4">
+    <div class="card card-round">
+        <div class="card-body text-center">
+            <h4 class="card-title">Pengguna Online</h4>
+            <h1 id="onlineUsers" class="text-success fw-bold">0</h1>
+            <p class="text-muted">Pengguna aktif dalam 5 menit terakhir</p>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
+    <div class="card card-round">
+        <div class="card-header">
+            <div class="card-head-row">
+                <div class="card-title">Statistik Login Mingguan</div>
             </div>
         </div>
+        <div class="card-body">
+            <canvas id="statisticsChart"></canvas>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    function fetchOnlineUsers() {
+        fetch("{{ route('admin.onlineUsers') }}")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("onlineUsers").innerText = data.onlineUsers;
+            })
+            .catch(error => console.error('Error fetching online users:', error));
+    }
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            // Statistik Pengguna (Chart Bulanan)
-            const statisticsCtx = document.getElementById('statisticsChart').getContext('2d');
-            const statisticsData = {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Pengguna Aktif',
-                    data: [120, 150, 170, 200, 240, 260, 300, 320, 350, 380, 400, 450],
-                    borderColor: '#4caf50',
-                    backgroundColor: 'rgba(76, 175, 80, 0.2)',
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#4caf50',
-                    pointBorderColor: '#fff',
-                }, ],
-            };
+    setInterval(fetchOnlineUsers, 5000); // Update setiap 5 detik
 
-            const statisticsOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Bulan',
-                        },
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Jumlah Pengguna',
-                        },
-                        beginAtZero: true,
-                    },
-                },
-            };
+    // Data Statistik Login Mingguan
+    function fetchLoginStatistics() {
+        fetch("{{ route('admin.loginStatistics') }}")
+            .then(response => response.json())
+            .then(data => {
+                statisticsChart.data.datasets[0].data = Object.values(data);
+                statisticsChart.update();
+            })
+            .catch(error => console.error('Error fetching login statistics:', error));
+    }
 
-            new Chart(statisticsCtx, {
-                type: 'line',
-                data: statisticsData,
-                options: statisticsOptions,
-            });
+    const ctx = document.getElementById("statisticsChart").getContext("2d");
+    const statisticsChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+            datasets: [{
+                label: "Jumlah Login",
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 2,
+                data: [0, 0, 0, 0, 0, 0, 0]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
 
-            // Statistik Transaksi Buku (Chart Harian)
-            const dailySalesCtx = document.getElementById('dailySalesChart').getContext('2d');
-            const dailySalesData = {
-                labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
-                datasets: [{
-                    label: 'Buku Terpinjam',
-                    data: [15, 20, 25, 30, 35, 40, 45],
-                    borderColor: '#2196f3',
-                    backgroundColor: 'rgba(33, 150, 243, 0.2)',
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#2196f3',
-                    pointBorderColor: '#fff',
-                    // Ubah warna label di legend
-                    borderColor: '#2196f3',
-                    pointBorderColor: '#ffffff',
-                    pointBackgroundColor: '#ffffff',
-                    color: '#ffffff', // Warna teks "Buku Terpinjam" di legend
-                }, ],
-            };
+    fetchLoginStatistics();
+    setInterval(fetchLoginStatistics, 60000); // Update setiap 60 detik
+</script>
 
-            const dailySalesOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Hari',
-                            color: '#ffffff', // Ubah warna teks menjadi putih
-                        },
-                        ticks: {
-                            color: '#ffffff', // Ubah warna teks ticks menjadi putih
-                        },
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Jumlah Buku',
-                            color: '#ffffff', // Ubah warna teks menjadi putih
-                        },
-                        ticks: {
-                            color: '#ffffff', // Ubah warna teks ticks menjadi putih
-                        },
-                        beginAtZero: true,
-                    },
-                },
-            };
-
-
-            new Chart(dailySalesCtx, {
-                type: 'line',
-                data: dailySalesData,
-                options: dailySalesOptions,
-            });
-        </script>
         <!-- Card User Online -->
-        <div class="card card-round">
-            <div class="card-body pb-0">
-                <div class="h1 fw-bold float-end text-primary">+10%</div>
-                <h2 class="mb-2">60</h2>
-                <p class="text-muted">Pengguna Online</p>
                 <div class="pull-in sparkline-fix">
                     <div id="lineChart"></div>
                 </div>

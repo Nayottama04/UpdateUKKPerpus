@@ -14,7 +14,8 @@ use App\Http\Controllers\{
     PengarangController,
     PustakaController,
     TransaksiController,
-    UserPustakaController
+    UserPustakaController,
+    AdminDashboardController
 };
 use App\Http\Controllers\Auth\LoginController;
 
@@ -82,11 +83,12 @@ Route::get('/api/total-anggota', function () {
     return response()->json(['total_anggota' => \App\Models\Anggota::count()]);
 })->name('api.total-anggota');
 
-use App\Models\CabangPerpustakaan;
-
 Route::get('/api/total-cabang', function () {
     return response()->json(['total_cabang' =>  \App\Models\Perpustakaan::count()]);
 })->name('api.total-cabang');
+
+Route::get('/admin/online-users', [AdminDashboardController::class, 'getOnlineUsers'])->name('admin.onlineUsers');
+Route::get('/admin/login-statistics', [AdminDashboardController::class, 'getLoginStatistics'])->name('admin.loginStatistics');
 
 
 
