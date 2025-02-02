@@ -81,20 +81,24 @@
     <div class="row text-center mb-4">
         <div class="col-md-4">
             <div class="card shadow-lg hover-effect" style="border-radius: 18px; background-color: #f2f2f2;">
-                <div class="card-body">
+                <div class="card-body"> 
                     <h5>Total Pustaka</h5>
                     <h2 style="font-size: 2.5rem; font-weight: bold; color: #1e1e1e;">{{ $totalPustaka }}</h2>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow-lg hover-effect" style="border-radius: 18px; background-color: #f2f2f2;">
-                <div class="card-body">
-                    <h5>Riwayat Transaksi</h5>
-                    <h2 style="font-size: 2.5rem; font-weight: bold; color: #1e1e1e;">{{ $totalTransaksi }}</h2>
-                </div>
-            </div>
+    <div class="card shadow-lg hover-effect" style="border-radius: 18px; background-color: #f2f2f2;">
+        <div class="card-body text-center">
+            <h5 style="font-weight: 600;">Riwayat Peminjaman</h5>
+            
+            <a href="{{ route('user.transaksi') }}" class="btn btn-dark mt-3" style="border-radius: 12px;">
+                Lihat Detail
+            </a>
         </div>
+    </div>
+</div>
+
         <div class="col-md-4">
             <div class="card shadow-lg hover-effect" style="border-radius: 18px; background-color: #f2f2f2;">
                 <div class="card-body">

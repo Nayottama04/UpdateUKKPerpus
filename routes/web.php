@@ -49,6 +49,12 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('user.userHome');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/home', function () {
+        return view('user.userHome');
+    })->name('user.home');
+});
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/pustaka/{id}', [UserPustakaController::class, 'show'])->name('user.pustaka.show');
@@ -94,6 +100,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/peminjaman', [UserPeminjamanController::class, 'store'])
         ->name('user.peminjaman.store');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/transaksi', [UserPeminjamanController::class, 'riwayat'])->name('user.transaksi');
+});
+
 
 
 

@@ -35,4 +35,15 @@ class UserPeminjamanController extends Controller
 
         return redirect('/home')->with('success', 'Buku berhasil dipinjam!');
     }
+    public function riwayat()
+    {
+        // Cek apakah user memiliki anggota terkait
+    
+        $transaksis = Transaksi::where('anggota_id', auth()->user()->anggota->id)->latest()->get();
+    
+        return view('user.transaksi', compact('transaksis'));
+    }
+    
+
+
 }
