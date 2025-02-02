@@ -30,7 +30,7 @@ return new class extends Migration
             $table->enum('fa', ['Y', 'T']);
             $table->string('keterangan', 45);
             $table->longText('foto');
-            $table->string('username', 50)->unique();
+            $table->string('password', 255)->unique();
             $table->string('password', 50);
             $table->timestamps();
             $table->softDeletes();

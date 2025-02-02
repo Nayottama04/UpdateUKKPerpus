@@ -15,7 +15,8 @@ use App\Http\Controllers\{
     PustakaController,
     TransaksiController,
     UserPustakaController,
-    AdminDashboardController
+    AdminDashboardController,
+    UserPeminjamanController
 };
 use App\Http\Controllers\Auth\LoginController;
 
@@ -46,7 +47,7 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('user.home');
+    Route::get('/home', [HomeController::class, 'index'])->name('user.userHome');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -89,6 +90,11 @@ Route::get('/api/total-cabang', function () {
 
 Route::get('/admin/online-users', [AdminDashboardController::class, 'getOnlineUsers'])->name('admin.onlineUsers');
 Route::get('/admin/login-statistics', [AdminDashboardController::class, 'getLoginStatistics'])->name('admin.loginStatistics');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/user/peminjaman', [UserPeminjamanController::class, 'store'])
+        ->name('user.peminjaman.store');
+});
+
 
 
 

@@ -28,9 +28,10 @@ class Transaksi extends Model
         return $this->belongsTo(Pustaka::class);
     }
 
-    // Relasi ke model Anggota
+    // Relasi ke model User (anggota)
     public function anggota()
-    {
-        return $this->belongsTo(Anggota::class);
-    }
+{
+    return $this->belongsTo(Anggota::class, 'anggota_id'); // Jika menggunakan tabel anggotas
+}
+
 }

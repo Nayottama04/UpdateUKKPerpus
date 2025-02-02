@@ -59,4 +59,9 @@ class User extends Authenticatable
             get: fn ($value) =>  ["user", "admin", "manager"][$value],
         );
     }
+    public function anggota()
+{
+    return $this->hasOne(Anggota::class, 'email', 'email');
+}
+
 }

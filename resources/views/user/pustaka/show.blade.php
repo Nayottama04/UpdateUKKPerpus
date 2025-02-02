@@ -71,8 +71,25 @@
                     </div>
 
                     <div class="mt-4 text-center">
-                        <a href="{{ route('home') }}" class="btn btn-dark btn-lg" style="border-radius: 12px;">Kembali</a>
-                    </div>
+    <form action="{{ route('user.peminjaman.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="pustaka_id" value="{{ $pustaka->id }}">
+
+        {{-- Ambil ID anggota berdasarkan user yang login --}}
+        <input type="hidden" name="anggota_id" value="{{ auth()->user()->anggota->id }}">
+
+        <button type="submit" class="btn btn-success btn-lg" style="border-radius: 12px; margin-right: 10px;">
+            Pinjam Buku
+        </button>
+    </form>
+
+    <a href="{{ route('home') }}" class="btn btn-dark btn-lg" style="border-radius: 12px;">
+        Kembali
+    </a>
+</div>
+
+
+
                 </div>
             </div>
         </div>

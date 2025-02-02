@@ -26,7 +26,7 @@
         @foreach($transaksis as $transaksi)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $transaksi->pustaka->judul_pustaka }}</td>
+          <td>{{ $transaksi->pustaka->judul_pustaka }}</td> 
           <td>{{ $transaksi->anggota->nama_anggota }}</td>
           <td>{{ $transaksi->tgl_pinjam }}</td>
           <td>{{ $transaksi->tgl_kembali }}</td>

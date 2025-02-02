@@ -63,53 +63,78 @@
         <div class="card-body p-5">
             <h2 class="text-center mb-4" style="font-weight: 600;">Create your account</h2>
             <form method="POST" action="{{ route('register') }}">
-                @csrf
+    @csrf
 
-                <div class="mb-4">
-                    <label for="name" class="form-label" style="font-weight: 500;">Full Name</label>
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                    @error('name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
+    <div class="mb-4">
+        <label for="name" class="form-label" style="font-weight: 500;">Full Name</label>
+        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+        @error('name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
-                <div class="mb-4">
-                    <label for="email" class="form-label" style="font-weight: 500;">Email Address</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                    @error('email')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
+    <div class="mb-4">
+        <label for="tempat" class="form-label" style="font-weight: 500;">Tempat Lahir</label>
+        <input id="tempat" type="text" class="form-control @error('tempat') is-invalid @enderror" name="tempat" value="{{ old('tempat') }}" required>
+        @error('tempat')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
-                <div class="mb-4">
-                    <label for="password" class="form-label" style="font-weight: 500;">Password</label>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                    @error('password')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
+    <div class="mb-4">
+        <label for="tgl_lahir" class="form-label" style="font-weight: 500;">Tanggal Lahir</label>
+        <input id="tgl_lahir" type="date" class="form-control @error('tgl_lahir') is-invalid @enderror" name="tgl_lahir" required>
+        @error('tgl_lahir')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
-                <div class="mb-4">
-                    <label for="password-confirm" class="form-label" style="font-weight: 500;">Confirm Password</label>
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                </div>
+    <div class="mb-4">
+        <label for="alamat" class="form-label" style="font-weight: 500;">Alamat</label>
+        <input id="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" required>
+        @error('alamat')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
-                <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary">
-                        Register
-                    </button>
-                </div>
+    <div class="mb-4">
+        <label for="no_telp" class="form-label" style="font-weight: 500;">Nomor Telepon</label>
+        <input id="no_telp" type="text" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" required>
+        @error('no_telp')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
-                <div class="text-center">
-                    <span style="font-size: 14px;">Already have an account? <a href="{{ route('login') }}" class="text-decoration-none">Sign In</a></span>
-                </div>
-            </form>
+    <div class="mb-4">
+        <label for="email" class="form-label" style="font-weight: 500;">Email Address</label>
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+        @error('email')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-4">
+        <label for="password" class="form-label" style="font-weight: 500;">Password</label>
+        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+        @error('password')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-4">
+        <label for="password-confirm" class="form-label" style="font-weight: 500;">Confirm Password</label>
+        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+    </div>
+
+    <div class="d-grid mb-4">
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+
+    <div class="text-center">
+        <span style="font-size: 14px;">Already have an account? <a href="{{ route('login') }}" class="text-decoration-none">Sign In</a></span>
+    </div>
+</form>
+
         </div>
     </div>
 </div>
