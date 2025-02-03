@@ -23,12 +23,20 @@
                     <td>{{ date('d-m-Y', strtotime($transaksi->tgl_pinjam)) }}</td>
                     <td>{{ date('d-m-Y', strtotime($transaksi->tgl_kembali)) }}</td>
                     <td>
-                        @if($transaksi->tgl_pengembalian)
-                            <span class="badge bg-success">Dikembalikan</span>
-                        @else
-                            <span class="badge bg-warning">Dipinjam</span>
-                        @endif
-                    </td>
+    @if($transaksi->tgl_pengembalian)
+        <span class="badge bg-success">Dikembalikan</span>
+    @else
+        <span class="badge bg-warning">Dipinjam</span>
+        <form action="{{ route('user.kembalikan', $transaksi->id) }}" method="POST" class="d-inline">
+            @csrf
+            @method('PUT')
+            <button type="submit" class="btn btn-sm btn-primary" style="border-radius: 8px; margin-left: 10px;">
+                Kembalikan Buku
+            </button>
+        </form>
+    @endif
+</td>
+
                 </tr>
                 @endforeach
             </tbody>

@@ -61,6 +61,17 @@ class HomeController extends Controller
 
         return view('admin.adminHome', compact('onlineUsers', 'loginStatistics'));
     }
+    public function userHome()
+{
+    // Ambil data statistik
+    $totalPustaka = Pustaka::count();
+    $bukuTersedia = Pustaka::where('jml_pinjam', '>', 0)->count();
+    $totalTransaksi = Transaksi::where('anggota_id', auth()->user()->anggota->id ?? null)->count();
+    $pustakaBaru = Pustaka::latest()->take(6)->get();
+
+    return view('user.userHome', compact('totalPustaka', 'bukuTersedia', 'totalTransaksi', 'pustakaBaru'));
+}
+
 
 
     /**

@@ -253,7 +253,7 @@
                         </div>
                         <div class="u-text">
                           <h4>Aing Admin</h4>
-                          <p class="text-muted">GuehAdmin@gmail.com</p>
+                          <p class="text-muted">admin@itsolutionstuff.com</p>
                         </div>
                       </div>
                     </li>

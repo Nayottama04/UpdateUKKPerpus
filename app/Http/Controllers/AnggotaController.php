@@ -106,8 +106,15 @@ class AnggotaController extends Controller
     public function destroy(string $id)
     {
         $anggota = Anggota::findOrFail($id);
+    
+        // Jika anggota sudah dihapus, return error
+        if ($anggota->deleted_at !== null) {
+            return back()->with('error', 'Anggota sudah dihapus sebelumnya.');
+        }
+    
         $anggota->delete();
-
+    
         return redirect()->route('anggota.index')->with('success', 'Anggota berhasil dihapus.');
     }
+        
 }

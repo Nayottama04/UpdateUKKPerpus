@@ -54,6 +54,10 @@ Route::middleware(['auth'])->group(function () {
         return view('user.userHome');
     })->name('user.home');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/home', [HomeController::class, 'userHome'])->name('user.home');
+});
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -103,6 +107,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/transaksi', [UserPeminjamanController::class, 'riwayat'])->name('user.transaksi');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::put('/user/kembalikan/{id}', [UserPeminjamanController::class, 'kembalikan'])
+        ->name('user.kembalikan');
+});
+
 
 
 

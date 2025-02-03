@@ -74,9 +74,19 @@
     <form action="{{ route('user.peminjaman.store') }}" method="POST">
         @csrf
         <input type="hidden" name="pustaka_id" value="{{ $pustaka->id }}">
-
-        {{-- Ambil ID anggota berdasarkan user yang login --}}
         <input type="hidden" name="anggota_id" value="{{ auth()->user()->anggota->id }}">
+
+        <!-- Input Tanggal Pinjam -->
+        <div class="mb-3">
+            <label for="tgl_pinjam" class="form-label fw-semibold">Tanggal Pinjam</label>
+            <input type="date" name="tgl_pinjam" id="tgl_pinjam" class="form-control" required>
+        </div>
+
+        <!-- Input Tanggal Kembali -->
+        <div class="mb-3">
+            <label for="tgl_kembali" class="form-label fw-semibold">Tanggal Kembali</label>
+            <input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control" required>
+        </div>
 
         <button type="submit" class="btn btn-success btn-lg" style="border-radius: 12px; margin-right: 10px;">
             Pinjam Buku
