@@ -9,6 +9,11 @@
     <a href="{{ route('jenis-anggota.create') }}" class="btn btn-primary btn-sm float-right">Tambah Jenis Anggota</a>
   </div>
   <div class="card-body">
+  @if (session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    @endif
     <table class="table table-striped">
       <thead>
         <tr>

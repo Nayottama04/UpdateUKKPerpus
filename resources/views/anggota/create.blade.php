@@ -89,7 +89,7 @@
 
             <div class="form-group">
                 <label for="foto">Foto</label>
-                <input type="file" name="foto" id="foto" class="form-control">
+                <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*" required>
             </div>
 
             <div class="form-group">

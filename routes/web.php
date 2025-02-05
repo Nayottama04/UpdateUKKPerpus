@@ -16,7 +16,8 @@ use App\Http\Controllers\{
     TransaksiController,
     UserPustakaController,
     AdminDashboardController,
-    UserPeminjamanController
+    UserPeminjamanController,
+    UserPembayaranController
 };
 use App\Http\Controllers\Auth\LoginController;
 
@@ -111,9 +112,17 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/user/kembalikan/{id}', [UserPeminjamanController::class, 'kembalikan'])
         ->name('user.kembalikan');
 });
+Route::middleware(['auth'])->group(function () {
+    
+});
+Route::put('/transaksi/{id}/approve', [TransaksiController::class, 'approve'])->name('transaksi.approve');
+Route::post('/user/peminjaman', [UserPeminjamanController::class, 'store'])->name('user.peminjaman.store');
+    Route::get('/user/transaksi', [UserPeminjamanController::class, 'riwayat'])->name('user.transaksi');
+    Route::put('/user/kembalikan/{id}', [UserPeminjamanController::class, 'kembalikan'])->name('user.kembalikan');
 
-
-
+    // **Pembayaran Denda**
+    Route::get('/pembayaran', [UserPembayaranController::class, 'index'])->name('user.pembayaran.index');
+    Route::post('/pembayaran/proses', [UserPembayaranController::class, 'proses'])->name('user.pembayaran.proses');
 
 
 

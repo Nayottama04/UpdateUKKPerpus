@@ -119,23 +119,32 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Beranda</a>
-                        </li>
-                        @auth
-                            @if (Auth::user()->is_admin)
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="bookMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Buku
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="bookMenu">
-                                        <li><a class="dropdown-item" href="{{ route('books.index') }}">Daftar Buku</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('books.create') }}">Tambah Buku</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                        @endauth
-                    </ul>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('home') }}">Beranda</a>
+    </li>
+    
+    @auth
+        @if (Auth::user()->is_admin)
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="bookMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Buku
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="bookMenu">
+                    <li><a class="dropdown-item" href="{{ route('books.index') }}">Daftar Buku</a></li>
+                    <li><a class="dropdown-item" href="{{ route('books.create') }}">Tambah Buku</a></li>
+                </ul>
+            </li>
+        @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.transaksi') }}">Riwayat Peminjaman</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger fw-bold" href="{{ route('user.pembayaran.index') }}">Pembayaran</a>
+            </li>
+        @endif
+    @endauth
+</ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

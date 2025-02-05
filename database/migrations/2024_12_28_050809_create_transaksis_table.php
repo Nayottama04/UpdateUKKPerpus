@@ -27,7 +27,7 @@ return new class extends Migration
             $table->date('tgl_kembali');
             $table->date('tgl_pengembalian')->nullable();
             $table->enum('fp', ['0', '1'])->default('0');
-            $table->string('keterangan', 5)->nullable();
+            $table->string('keterangan', 8)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

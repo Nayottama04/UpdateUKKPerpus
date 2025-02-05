@@ -58,7 +58,7 @@
         <th>Foto</th>
         <td>
           @if($anggota->foto)
-          <img src="{{ asset('img/ProfilePP.jpg') }}" alt="Foto Anggota" class="img-thumbnail" width="150">
+         <img src="{{ asset('storage/') }}" alt="Foto Anggota" class="img-thumbnail" width="150">
           @else
           Tidak ada foto
           @endif
