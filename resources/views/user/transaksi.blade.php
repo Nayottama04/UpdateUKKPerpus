@@ -41,26 +41,33 @@
                         @endif
                     </td>
                     <td>
-                        @if(!$transaksi->tgl_pengembalian)
-                            @if($hariTelat > 0)
-                                <!-- Jika ada denda, user harus bayar dulu -->
-                                <a href="{{ route('user.pembayaran.index', $transaksi->id) }}" class="btn btn-sm btn-warning">
-                                    Bayar Denda
-                                </a>
-                            @else
-                                <!-- Jika tidak ada denda, bisa langsung dikembalikan -->
-                                <form action="{{ route('user.kembalikan', $transaksi->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-sm btn-primary" style="border-radius: 8px;">
-                                        Kembalikan Buku
-                                    </button>
-                                </form>
-                            @endif
-                        @else
-                            <span class="text-success">Buku telah dikembalikan</span>
-                        @endif
-                    </td>
+    @if(!$transaksi->tgl_pengembalian)
+        <form action="{{ route('user.kembalikan', $transaksi->id) }}" method="POST" class="d-inline">
+            @csrf
+            @method('PUT')
+
+            <!-- Pilihan kondisi buku -->
+            <div class="mb-2">
+                <label for="kondisi_buku_{{ $transaksi->id }}" class="fw-semibold">Kondisi Buku</label>
+                <select name="kondisi_buku" id="kondisi_buku_{{ $transaksi->id }}" class="form-select kondisi-buku" required>
+                    <option value="Baik" data-denda="0">Baik</option>
+                    <option value="Rusak" data-denda="{{ $transaksi->pustaka->denda_hilang / 2 }}">Rusak</option>
+                    <option value="Hilang" data-denda="{{ $transaksi->pustaka->denda_hilang }}">Hilang</option>
+                </select>
+            </div>
+
+            <!-- Menampilkan total denda -->
+            <p class="text-danger fw-bold total-denda" id="denda_{{ $transaksi->id }}">Denda: Rp 0</p>
+
+            <button type="submit" class="btn btn-sm btn-primary" style="border-radius: 8px;">
+                Kembalikan Buku
+            </button>
+        </form>
+    @else
+        <span class="text-success">Buku telah dikembalikan</span>
+    @endif
+</td>
+
                 </tr>
                 @endforeach
             </tbody>
@@ -78,4 +85,16 @@
         vertical-align: middle;
     }
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".kondisi-buku").forEach(select => {
+        select.addEventListener("change", function () {
+            let denda = this.options[this.selectedIndex].getAttribute("data-denda");
+            let transaksiId = this.id.split("_")[2]; // Ambil ID transaksi dari ID select
+            document.getElementById("denda_" + transaksiId).innerText = "Denda: Rp " + new Intl.NumberFormat("id-ID").format(denda);
+        });
+    });
+});
+</script>
+
 @endsection

@@ -15,7 +15,7 @@ class UserPembayaranController extends Controller
             ->whereNull('tgl_pengembalian') // Hanya yang belum dikembalikan
             ->get()
             ->map(function ($transaksi) {
-                $hari_telat = max(0, Carbon::now()->diffInDays($transaksi->tgl_kembali, true));
+                $hari_telat = max(0, Carbon::now()->diffInDays($transaksi->tgl_pengembalian, false));
                 $transaksi->hari_telat = $hari_telat;
                 $transaksi->total_denda = $hari_telat > 0 ? $hari_telat * $transaksi->pustaka->denda_terlambat : 0;
                 return $transaksi;
@@ -29,7 +29,7 @@ class UserPembayaranController extends Controller
         $transaksi = Transaksi::findOrFail($id);
 
         // Pastikan transaksi benar-benar memiliki denda
-        $hari_telat = max(0, Carbon::now()->diffInDays($transaksi->tgl_kembali, true));
+        $hari_telat = max(0, Carbon::now()->diffInDays($transaksi->tgl_pengembalian, false));
         if ($hari_telat <= 0 || $transaksi->status_pembayaran == 'lunas') {
             return redirect()->route('user.pembayaran.index')->with('error', 'Denda tidak perlu dibayar.');
         }

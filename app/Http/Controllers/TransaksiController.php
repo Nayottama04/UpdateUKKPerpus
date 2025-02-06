@@ -91,36 +91,52 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil dihapus.');
     }
 
-    public function kembalikan($id)
-    {
-        $transaksi = Transaksi::findOrFail($id);
+    public function kembalikan(Request $request, $id)
+{
+    $request->validate([
+        'kondisi_buku' => 'required|in:Baik,Rusak,Hilang'
+    ]);
 
-        // Cek apakah user sudah membayar denda
-        if ($transaksi->status_pembayaran == 'belum') {
-            return redirect()->route('user.pembayaran.index')->with('error', 'Anda harus membayar denda sebelum mengembalikan buku.');
-        }
+    $transaksi = Transaksi::with('pustaka')->findOrFail($id);
 
-        // Set tanggal pengembalian dan kembalikan stok buku
-        $transaksi->update(['tgl_pengembalian' => Carbon::now()]);
+    // Hitung keterlambatan
+    $tglKembali = Carbon::parse($transaksi->tgl_kembali);
+    $tglPengembalian = Carbon::now();
+    $hariTelat = max($tglKembali->diffInDays($tglPengembalian, false), 0);
+
+    // Hitung denda berdasarkan keterlambatan
+    $dendaTerlambat = $hariTelat * ($transaksi->pustaka->denda_terlambat ?? 0);
+
+    // Hitung denda berdasarkan kondisi buku
+    $dendaKondisi = 0;
+    if ($request->kondisi_buku == 'Hilang') {
+        $dendaKondisi = $transaksi->pustaka->denda_hilang;
+    } elseif ($request->kondisi_buku == 'Rusak') {
+        $dendaKondisi = $transaksi->pustaka->denda_hilang / 2; // Denda 50% jika rusak
+    }
+
+    // Total denda
+    $totalDenda = $dendaTerlambat + $dendaKondisi;
+
+    // Update transaksi
+    $transaksi->update([
+        'tgl_pengembalian' => $tglPengembalian,
+        'kondisi_buku' => $request->kondisi_buku,
+        'total_denda' => $totalDenda,
+        'status_pembayaran' => 'belum' // Status tetap "belum" tetapi tidak memblokir pengembalian
+    ]);
+
+    // Kembalikan stok buku jika tidak hilang
+    if ($request->kondisi_buku !== 'Hilang') {
         $transaksi->pustaka->increment('jml_pinjam');
-
-        return redirect()->route('user.transaksi')->with('success', 'Buku berhasil dikembalikan.');
     }
 
-    public function approve($id)
-    {
-        $transaksi = Transaksi::findOrFail($id);
+    return redirect()->route('user.transaksi')->with('success', 'Buku berhasil dikembalikan.');
+}
+
     
-        // Pastikan denda sudah dibayar sebelum approve
-        if ($transaksi->status_pembayaran != 'lunas') {
-            return back()->with('error', 'User belum membayar denda, tidak bisa approve pengembalian.');
-        }
-    
-        // Set tanggal pengembalian
-        $transaksi->tgl_pengembalian = Carbon::now();
-        $transaksi->save();
-    
-        return back()->with('success', 'Buku berhasil dikembalikan!');
-    }
+
+   
+
     
 }

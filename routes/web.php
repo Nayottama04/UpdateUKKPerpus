@@ -123,6 +123,8 @@ Route::post('/user/peminjaman', [UserPeminjamanController::class, 'store'])->nam
     // **Pembayaran Denda**
     Route::get('/pembayaran', [UserPembayaranController::class, 'index'])->name('user.pembayaran.index');
     Route::post('/pembayaran/proses', [UserPembayaranController::class, 'proses'])->name('user.pembayaran.proses');
+    Route::post('/pembayaran/{transaksi}/bayar', [UserPembayaranController::class, 'bayar'])
+    ->name('user.pembayaran.bayar');
 
 
 

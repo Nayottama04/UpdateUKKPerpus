@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h2 class="mb-4 text-center" style="font-weight: bold;">Pembayaran Denda</h2>
+    <h2 class="mb-4 text-center" style="font-weight: bold;">Pembayaran Sanksi</h2>
 
     @if(session('success'))
         <div class="alert alert-success text-center">
@@ -11,7 +11,7 @@
     @endif
 
     @if($transaksis->isEmpty())
-        <div class="alert alert-info text-center">Tidak ada denda yang harus dibayar.</div>
+        <div class="alert alert-info text-center">Tidak ada sanksi yang harus dibayar.</div>
     @else
         <div class="table-responsive">
             <table class="table table-bordered">

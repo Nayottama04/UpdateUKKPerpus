@@ -35,7 +35,7 @@
           <td>{{ $loop->iteration }}</td>
           <td>{{ $pustaka->kode_pustaka }}</td>
           <td>{{ $pustaka->judul_pustaka }}</td>
-          <td>{{ $pustaka->ddc->ddc }}</td>
+          <td>{{ $pustaka->ddc ? $pustaka->ddc->ddc : 'No DDC' }}</td>
           <td>{{ $pustaka->format->format }}</td>
           <td>{{ $pustaka->penerbit->nama_penerbit }}</td>
           <td>{{ $pustaka->pengarang->nama_pengarang }}</td>

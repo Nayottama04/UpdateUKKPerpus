@@ -138,9 +138,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.transaksi') }}">Riwayat Peminjaman</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-danger fw-bold" href="{{ route('user.pembayaran.index') }}">Pembayaran</a>
-            </li>
+            
         @endif
     @endauth
 </ul>

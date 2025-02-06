@@ -76,16 +76,22 @@
         <input type="hidden" name="pustaka_id" value="{{ $pustaka->id }}">
         <input type="hidden" name="anggota_id" value="{{ auth()->user()->anggota->id }}">
 
-        <!-- Input Tanggal Pinjam -->
+        <!-- Input Tanggal Pinjam (Locked ke Hari Ini) -->
         <div class="mb-3">
             <label for="tgl_pinjam" class="form-label fw-semibold">Tanggal Pinjam</label>
-            <input type="date" name="tgl_pinjam" id="tgl_pinjam" class="form-control" required>
+            <input type="date" name="tgl_pinjam" id="tgl_pinjam" class="form-control" value="{{ date('Y-m-d') }}" readonly>
         </div>
 
-        <!-- Input Tanggal Kembali -->
+        <!-- Input Tanggal Kembali (Otomatis +5 Hari) -->
         <div class="mb-3">
             <label for="tgl_kembali" class="form-label fw-semibold">Tanggal Kembali</label>
-            <input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control" required>
+            <input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control" value="{{ date('Y-m-d', strtotime('+5 days')) }}" readonly>
+        </div>
+
+        <!-- Pemberitahuan batas waktu peminjaman -->
+        <div class="alert alert-warning text-center">
+            <strong>Perhatian:</strong> Anda harus mengembalikan buku sebelum <strong>{{ date('d-m-Y', strtotime('+5 days')) }}</strong>.  
+            Jika terlambat, akan dikenakan denda.
         </div>
 
         <button type="submit" class="btn btn-success btn-lg" style="border-radius: 12px; margin-right: 10px;">
@@ -97,6 +103,7 @@
         Kembali
     </a>
 </div>
+
 
 
 

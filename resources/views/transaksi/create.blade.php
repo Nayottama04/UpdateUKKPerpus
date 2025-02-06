@@ -16,7 +16,7 @@
             @endforeach
         </ul>
     </div>
-@endif
+  @endif
 
     <form action="{{ route('transaksi.store') }}" method="POST">
       @csrf
@@ -43,12 +43,14 @@
 
       <div class="form-group">
         <label for="tgl_pinjam">Tanggal Pinjam</label>
-        <input type="date" name="tgl_pinjam" id="tgl_pinjam" class="form-control" required>
+        <input type="date" name="tgl_pinjam" id="tgl_pinjam" class="form-control" 
+          value="{{ date('Y-m-d') }}" readonly required>
       </div>
 
       <div class="form-group">
         <label for="tgl_kembali">Tanggal Kembali</label>
-        <input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control" required>
+        <input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control" 
+          value="{{ date('Y-m-d', strtotime('+5 days')) }}" readonly required>
       </div>
 
       <div class="form-group">

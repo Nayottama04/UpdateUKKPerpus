@@ -12,35 +12,38 @@ class UserPeminjamanController extends Controller
 {
     // Peminjaman buku oleh user
     public function store(Request $request)
-    {
-        $request->validate([
-            'pustaka_id' => 'required|exists:pustakas,id',
-            'anggota_id' => 'required|exists:anggotas,id',
-            'tgl_pinjam' => 'required|date|after_or_equal:today',
-            'tgl_kembali' => 'required|date|after:tgl_pinjam',
-        ]);
+{
+    $request->validate([
+        'pustaka_id' => 'required|exists:pustakas,id',
+        'anggota_id' => 'required|exists:anggotas,id',
+    ]);
 
-        $pustaka = Pustaka::findOrFail($request->pustaka_id);
+    $pustaka = Pustaka::findOrFail($request->pustaka_id);
 
-        if ($pustaka->jml_pinjam <= 0) {
-            return back()->with('error', 'Buku ini tidak tersedia untuk dipinjam.');
-        }
-
-        // Simpan transaksi peminjaman
-        Transaksi::create([
-            'pustaka_id' => $pustaka->id,
-            'anggota_id' => $request->anggota_id,
-            'tgl_pinjam' => $request->tgl_pinjam,
-            'tgl_kembali' => $request->tgl_kembali,
-            'fp' => '0', // Belum dikembalikan
-            'status_pembayaran' => 'belum', // Tambahkan kolom status pembayaran
-            'keterangan' => 'Dipinjam',
-        ]);
-
-        $pustaka->decrement('jml_pinjam');
-
-        return redirect()->route('user.home')->with('success', 'Buku berhasil dipinjam!');
+    if ($pustaka->jml_pinjam <= 0) {
+        return back()->with('error', 'Buku ini tidak tersedia untuk dipinjam.');
     }
+
+    // Set tanggal pinjam ke hari ini dan tanggal kembali ke 5 hari ke depan
+    $tanggalPinjam = now();
+    $tanggalKembali = now()->addDays(5);
+
+    // Simpan transaksi peminjaman
+    Transaksi::create([
+        'pustaka_id' => $pustaka->id,
+        'anggota_id' => $request->anggota_id,
+        'tgl_pinjam' => $tanggalPinjam,
+        'tgl_kembali' => $tanggalKembali,
+        'fp' => '0', // Belum dikembalikan
+        'status_pembayaran' => 'belum',
+        'keterangan' => 'Dipinjam',
+    ]);
+
+    $pustaka->decrement('jml_pinjam');
+
+    return redirect()->route('user.home')->with('success', 'Buku berhasil dipinjam! Batas pengembalian: ' . $tanggalKembali->format('d-m-Y'));
+}
+
 
     // Menampilkan riwayat peminjaman user
     public function riwayat()
@@ -53,18 +56,18 @@ class UserPeminjamanController extends Controller
     }
 
     // Proses pengembalian buku
-    public function kembalikanBuku($id)
+    public function kembalikan(Request $request, $id)
 {
     $transaksi = Transaksi::findOrFail($id);
 
     // Pastikan denda sudah dibayar sebelum mengembalikan buku
-    if ($transaksi->status_pembayaran != 'lunas') {
-        return redirect()->route('user.pembayaran.index')->with('error', 'Anda harus membayar denda sebelum mengembalikan buku.');
-    }
+   
 
     // Set tanggal pengembalian
     $transaksi->update([
         'tgl_pengembalian' => now(),
+        'kondisi' => $request->kondisi,
+        'total_denda' => $request->total_denda
     ]);
 
     return redirect()->route('user.transaksi')->with('success', 'Buku berhasil dikembalikan!');
